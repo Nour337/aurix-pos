@@ -1,0 +1,49 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+@import '@fontsource/ibm-plex-sans-arabic/700.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-soft font-sans text-ink antialiased; }
+  [dir='rtl'] body { font-family: 'IBM Plex Sans Arabic', Inter, system-ui, sans-serif; }
+  /* Cormorant has no Arabic glyphs: in RTL, display headings use the Arabic face, slightly bolder */
+  [dir='rtl'] .font-display { font-family: 'IBM Plex Sans Arabic', serif; font-weight: 600; letter-spacing: 0; }
+  [dir='rtl'] h1.font-display { font-size: 1.65rem; }
+  input[type='search']::-webkit-search-cancel-button { display: none; }
+  input[type='number']::-webkit-inner-spin-button { opacity: .4; }
+  ::selection { background: #F5EACB; }
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+/* ── Printing ─────────────────────────────────────────────── */
+.print-only { display: none; }
+@media print {
+  @page { margin: 0; }
+  body * { visibility: hidden !important; }
+  .print-area, .print-area * { visibility: visible !important; }
+  .print-area { position: absolute; inset: 0 auto auto 0; display: block !important; }
+  [dir='rtl'] .print-area { inset: 0 0 auto auto; }
+  .no-print { display: none !important; }
+  html, body, #root { background: #fff !important; height: auto !important; overflow: visible !important; }
+  main, .h-dvh, .overflow-y-auto, .overflow-hidden { overflow: visible !important; height: auto !important; }
+}
+.receipt { font-family: 'IBM Plex Sans Arabic', Inter, ui-monospace, monospace; color: #000; background: #fff; line-height: 1.35; }
+.receipt-80 { width: 72mm; padding: 3mm 4mm; font-size: 11.5px; }
+.receipt-58 { width: 48mm; padding: 2mm 2mm; font-size: 10px; }
+.receipt hr { border: 0; border-top: 1px dashed #000; margin: 6px 0; }
+.report-print { width: 190mm; padding: 10mm; font-size: 12px; }
